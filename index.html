@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <script src="node_modules/jquery/jquery.min.js"></script>
+    <!-- <script src="node_modules/popper.js/dist/popper.js"></script> -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="app/app.js"></script>
+
+</head>
+
+<body ng-controller="ToDoListController as vm">
+    <div class="card">
+        <div class="card-header">
+            <h2>To do list</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Task name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.selectedList">
+                            <td>
+                                <input type="checkbox" ng-model="item.checked">
+                            </td>
+                            <td>
+                                {{item.name}}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" ng-click="vm.deleteTask($index)">Delete task</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" class="form-control" ng-model="vm.newTaskName">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-success pull-right" ng-click="vm.addTask()">Add task</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3">
+                            <button class="btn btn-default pull-right" ng-click="vm.showSelectedTasks()">Show selected tasks</button>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-warning" ng-click="vm.deleteSelectedTasks()">Delete selected tasks</button>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-primary" ng-click="vm.showAll()">Show all</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
